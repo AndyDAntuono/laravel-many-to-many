@@ -24,3 +24,6 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
     - modifico 2024_10_12_175108_create_technologies_table.php secono le mie necessità.
     - lancio il comando php artisan migrate
     - in phpMyAdmin eseguo il SQL SHOW TABLES; per assicurarmi che la tabella è stata effetivamente creata nel database.
+- lancio il comando php artisan make:model Technology per creare l'omonimo modello.
+    - modifico il modello Technology.
+    - controllo su phpMyAdmin se il modello funzioni correttamente.
