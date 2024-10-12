@@ -27,3 +27,7 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
 - lancio il comando php artisan make:model Technology per creare l'omonimo modello.
     - modifico il modello Technology.
     - controllo su phpMyAdmin se il modello funzioni correttamente.
+- lancio il comando php artisan make:migration create_project_technology_table per creare una tabella pivot.
+    - modifico 2024_10_12_190121_create_project_technology_table.php
+    - lancio il comando php artisan migrate
+    -  controllo su phpMyAdmin se ci siano le colonne id, project_id, technology_id, created_at, e updated_at nella tabella.
