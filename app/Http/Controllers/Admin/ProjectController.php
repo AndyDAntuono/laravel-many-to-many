@@ -38,6 +38,13 @@ class ProjectController extends Controller
     {
         $types = Type::all(); // recupera tutte le tipologie
         $technologies = Technology::all(); // recupera tutte le tecnologie
+
+        if (Project::where('slug', $slug)->exists()) {
+            // Gestisci il caso in cui lo slug esiste già
+            return redirect()->back()->withErrors(['title' => 'Il titolo è già stato utilizzato per un altro progetto.']);
+        }
+        
+
         return view('admin.projects.create', compact('types', 'technologies'));
     }
 
@@ -46,21 +53,24 @@ class ProjectController extends Controller
         $slug = Str::slug($title);
         $originalSlug = $slug;
         $counter = 1;
-
-        if ($project) {
-            while (Project::where('slug', $slug)->where('id', '!=', $project->id)->exists()) {
-                $slug = $originalSlug . '-' . $counter;
-                $counter++;
-            }
-        } else {
-            while (Project::where('slug', $slug)->exists()) {
-                $slug = $originalSlug . '-' . $counter;
-                $counter++;
-            }
+    
+        // Controlla se esiste uno slug duplicato
+        while (Project::where('slug', $slug)
+                ->where('id', '!=', optional($project)->id) // Escludi il progetto corrente se esiste
+                ->exists()) 
+        {
+            // Se esiste, crea un nuovo slug
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
         }
 
+        Log::info('Generated slug: ' . $slug);
+
+    
         return $slug;
     }
+
+
 
     public function store(Request $request)
     {
@@ -69,34 +79,42 @@ class ProjectController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'type_id' => 'nullable|exists:types,id', // Validazione per il campo type_id
-            'technologies' => 'nullable|array',  // Valida che 'technologies' sia un array
-            'technologies.*' => 'exists:technologies,id'  // Ogni elemento dell'array deve esistere nella tabella technologies
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|array',
+            'technologies.*' => 'exists:technologies,id'
         ]);
-
+    
         // Gestione dell'immagine se presente
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
         } else {
             $imagePath = null;
         }
-
+    
+        // Genera lo slug e logga il valore
+        $slug = $this->generateUniqueSlug($validated['title']);
+        Log::info('Generated slug: ' . $slug); // Log del slug generato
+    
         // Creazione del nuovo progetto
         $project = Project::create([
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'slug' => $this->generateUniqueSlug($validated['title']),
+            'slug' => $slug, // Usa lo slug generato
             'image' => $imagePath,
             'type_id' => $validated['type_id'], // Associa la tipologia
         ]);
-
+    
+        // Logga il progetto creato
+        Log::info('New project created with slug: ' . $project->slug);
+    
         // Sincronizza le tecnologie
         if (isset($validated['technologies'])) {
             $project->technologies()->sync($validated['technologies']);
         }
-
-        return redirect()->route('projects.index')->with('success', 'Progetto creato con successo!');
+    
+        return redirect()->route('admin.projects.index')->with('success', 'Progetto creato con successo!');
     }
+    
 
     public function show(Project $project)
     {
@@ -153,7 +171,7 @@ class ProjectController extends Controller
         // Salva le modifiche
         $project->save();
 
-        return redirect()->route('projects.index')->with('success', 'Progetto aggiornato con successo!');
+        return redirect()->route('admin.projects.index')->with('success', 'Progetto aggiornato con successo!');
     }
 
     public function destroy(Project $project)
