@@ -31,3 +31,4 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
     - modifico 2024_10_12_190121_create_project_technology_table.php
     - lancio il comando php artisan migrate
     -  controllo su phpMyAdmin se ci siano le colonne id, project_id, technology_id, created_at, e updated_at nella tabella.
+- modifico ulteriomente il modello Technology e il modello Project per stabile le relazioni
