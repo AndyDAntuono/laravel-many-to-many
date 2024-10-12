@@ -99,6 +99,7 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all(); // Recupera tutte le tipologie
+        $technologies = Technology::all();
         return view('admin.projects.edit', compact('project', 'types'));
     }
 
@@ -110,6 +111,8 @@ class ProjectController extends Controller
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'type_id' => 'nullable|exists:types,id', // Validazione per il campo type_id
+            'technologies' => 'nullable|array',  // Valida che 'technologies' sia un array
+            'technologies.*' => 'exists:technologies,id'  // Ogni elemento dell'array deve esistere nella tabella technologies
         ]);
 
         // Gestione dell'immagine se presente
@@ -129,6 +132,14 @@ class ProjectController extends Controller
         $project->description = $validated['description'];
         $project->slug = $this->generateUniqueSlug($validated['title']);
         $project->type_id = $validated['type_id']; // Aggiorna la tipologia
+
+         // Aggiorna le tecnologie associate al progetto
+        if (isset($validated['technologies'])) {
+            $project->technologies()->sync($validated['technologies']);
+        } else {
+            // Se nessuna tecnologia è selezionata, disassocia tutte le tecnologie
+            $project->technologies()->detach();
+        }   
 
         // Salva le modifiche
         $project->save();

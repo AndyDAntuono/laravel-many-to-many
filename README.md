@@ -34,3 +34,4 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
 - modifico ulteriomente il modello Technology e il modello Project per stabile le relazioni
 - effettuo dei controlli per verificare che le modfifiche ai modelli Tecnology e Project funzionino correttamente (anche tramite web.php).
 - modifico il flle show.blade.php (Projects) per visulizzare le tecnologie. Se non sono state aggiunte, nella view deve comparire il messaggio "Questo progetto non utilizza nessuna tecnologia."
+- sempre nel ProjectController aggiungo le tecnologie nelle pagine di creazione e modifica di un progetto tipo.
