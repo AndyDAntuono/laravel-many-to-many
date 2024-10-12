@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
+use App\Models\Technology;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -36,7 +37,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all(); // recupera tutte le tipologie
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all(); // recupera tutte le tecnologie
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     private function generateUniqueSlug($title, Project $project = null)
@@ -68,6 +70,8 @@ class ProjectController extends Controller
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'type_id' => 'nullable|exists:types,id', // Validazione per il campo type_id
+            'technologies' => 'nullable|array',  // Valida che 'technologies' sia un array
+            'technologies.*' => 'exists:technologies,id'  // Ogni elemento dell'array deve esistere nella tabella technologies
         ]);
 
         // Gestione dell'immagine se presente
@@ -86,6 +90,11 @@ class ProjectController extends Controller
             'type_id' => $validated['type_id'], // Associa la tipologia
         ]);
 
+        // Sincronizza le tecnologie
+        if (isset($validated['technologies'])) {
+            $project->technologies()->sync($validated['technologies']);
+        }
+
         return redirect()->route('projects.index')->with('success', 'Progetto creato con successo!');
     }
 
@@ -100,7 +109,7 @@ class ProjectController extends Controller
     {
         $types = Type::all(); // Recupera tutte le tipologie
         $technologies = Technology::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     public function update(Request $request, Project $project)
@@ -149,7 +158,15 @@ class ProjectController extends Controller
 
     public function destroy(Project $project)
     {
+        // Disassocia tutte le tecnologie prima di eliminare il progetto
+        $project->technologies()->detach();
+
+        // Elimina il progetto
         $project->delete();
+
+        if ($project->image) {
+            Storage::delete($project->image);
+        }        
 
         return redirect()->route('projects.index')->with('success', 'Progetto eliminato con successo!');
     }

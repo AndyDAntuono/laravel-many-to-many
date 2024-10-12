@@ -35,3 +35,5 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
 - effettuo dei controlli per verificare che le modfifiche ai modelli Tecnology e Project funzionino correttamente (anche tramite web.php).
 - modifico il flle show.blade.php (Projects) per visulizzare le tecnologie. Se non sono state aggiunte, nella view deve comparire il messaggio "Questo progetto non utilizza nessuna tecnologia."
 - sempre nel ProjectController aggiungo le tecnologie nelle pagine di creazione e modifica di un progetto tipo.
+- modifico le view di create.blade.php e ed edith.blade.php per aggiungere la possibilità di selezionare la tecnologia durante la creazione di un nuovo progetto o la modifica di uno esistente.
+- per rafforzare quanto fatto nel punto precedente implementp la logica di salvataggio e validazione nel ProjectController.php.

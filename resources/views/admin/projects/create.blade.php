@@ -26,6 +26,13 @@
                 @endforeach
             </select>
         </div>
+        <select name="technologies[]" id="technologies" class="form-control" multiple>
+            @foreach ($technologies as $technology)
+                <option value="{{ $technology->id }}">
+                    {{ $technology->name }}
+                </option>
+            @endforeach
+        </select>        
         <button type="submit" class="btn btn-success">Salva progetto</button>
     </form>
 @endsection

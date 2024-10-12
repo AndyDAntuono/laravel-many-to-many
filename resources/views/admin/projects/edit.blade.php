@@ -54,6 +54,17 @@
                 @endforeach
             </select>
         </div>
+        <div class="form-group">
+            <label for="technologies">Tecnologie</label>
+            <select name="technologies[]" id="technologies" class="form-control" multiple>
+                @foreach ($technologies as $technology)
+                    <option value="{{ $technology->id }}"
+                        @if (in_array($technology->id, $project->technologies->pluck('id')->toArray())) selected @endif>
+                        {{ $technology->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
         <button type="submit" class="btn btn-primary">Salva modifiche</button>
     </form>
