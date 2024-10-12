@@ -22,13 +22,13 @@
             </p>
 
             <!-- Pulsante per tornare alla lista dei progetti -->
-            <a href="{{ route('projects.index') }}" class="btn btn-secondary">Back to Projects</a>
+            <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary">Back to Projects</a>
 
             <!-- Pulsante per modificare il progetto -->
-            <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Edit Project</a>
+            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-primary">Edit Project</a>
 
             <!-- Form per eliminare il progetto -->
-            <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline-block">
+            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="d-inline-block">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger"

@@ -20,7 +20,7 @@
                         <td>{{ $type->name }}</td>
                         <td>{{ $type->slug }}</td>
                         <td>
-                            <a href="{{ route('types.edit', $type->id) }}" class="btn btn-warning">Modifica</a>
+                            <a href="{{ route('admin.types.edit', $type->id) }}" class="btn btn-warning">Modifica</a>
                             <form action="{{ route('types.destroy', $type->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')

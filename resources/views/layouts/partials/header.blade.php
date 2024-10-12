@@ -9,15 +9,15 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('projects.index') }}">Progetti</a>
+                    <a class="nav-link" href="{{ route('admin.projects.index') }}">Progetti</a>
                 </li>
                 <!-- Solo per amministratori autenticati -->
                 @if (Auth::check() && Auth::user()->is_admin)
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('projects.index') }}">Gestisci Progetti</a>
+                        <a class="nav-link" href="{{ route('admin.projects.index') }}">Gestisci Progetti</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('types.index') }}">Gestione Tipologie</a>
+                        <a class="nav-link" href="{{ route('admin.types.index') }}">Gestione Tipologie</a>
                     </li>
                 @endif
             </ul>

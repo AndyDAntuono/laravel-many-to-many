@@ -5,7 +5,7 @@
     <h1>Lista dei progetti</h1>
 
     <!-- Pulsante per creare un nuovo progetto -->
-    <a href="{{ route('projects.create') }}" class="btn btn-primary">Crea nuovo progetto</a>
+    <a href="{{ route('admin.projects.create') }}" class="btn btn-primary">Crea nuovo progetto</a>
 
     <ul>
         @foreach ($projects as $project)
@@ -13,10 +13,10 @@
                 {{ $project->title }}
 
                 <!-- Aggiungi un link per visualizzare i dettagli del progetto -->
-                <a href="{{ route('projects.show', $project->id) }}">{{ $project->title }}</a>
+                <a href="{{ route('admin.projects.show', $project->id) }}">{{ $project->title }}</a>
 
                 <!-- Pulsante per modificare il progetto corrente -->
-                <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning">Modifica</a>
+                <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">Modifica</a>
 
                 <!-- Bottone per mostrare la modale -->
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $project->id }}">
@@ -36,7 +36,7 @@
                             </div>
                             <div class="mdal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                                <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display:inline-block;">
+                                <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Elimina</button>
