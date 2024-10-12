@@ -20,3 +20,7 @@ aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tec
 /*SOLUZIONE*/
 
 NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, mi sono imbattutto in un errore. Ma mi è bastato inserire la parola "admin" nelle rotte delle views. Parte della soluzione al problema spetta al tutor Alessio Crea: vederdì 11-10-24 alle ore 17:45, avevamo intrapreso la strada giusto per risolvere il problema ma a causa della mancanza di tempo non siamo riusciti ad arrivare fino in fondo.
+- inizio la soluzione della repo lanciando il comando php artisan make:migration create_technologies_table che crea l'omonima tabella.
+    - modifico 2024_10_12_175108_create_technologies_table.php secono le mie necessità.
+    - lancio il comando php artisan migrate
+    - in phpMyAdmin eseguo il SQL SHOW TABLES; per assicurarmi che la tabella è stata effetivamente creata nel database.
