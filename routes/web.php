@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
+// test di controllo della relazione tra il modello Technology e Project
+use App\Models\Project;
 
 /*
 |-------------------------------------------------------------------------- 
@@ -32,6 +34,15 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function() {
     Route::resource('projects', ProjectController::class);
     Route::resource('types', TypeController::class);
+});
+
+// test di controllo della relazione tra il modello Technology e Project
+Route::get('/test-many-to-many', function() {
+    // Recupera un progetto specifico con le tecnologie associate
+    $project = Project::with('technologies')->find(1); // ID del progetto che vuoi testare
+
+    // Mostra le tecnologie associate
+    return $project->technologies;
 });
 
 

@@ -32,3 +32,5 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
     - lancio il comando php artisan migrate
     -  controllo su phpMyAdmin se ci siano le colonne id, project_id, technology_id, created_at, e updated_at nella tabella.
 - modifico ulteriomente il modello Technology e il modello Project per stabile le relazioni
+- effettuo dei controlli per verificare che le modfifiche ai modelli Tecnology e Project funzionino correttamente (anche tramite web.php).
+- modifico il flle show.blade.php (Projects) per visulizzare le tecnologie. Se non sono state aggiunte, nella view deve comparire il messaggio "Questo progetto non utilizza nessuna tecnologia."

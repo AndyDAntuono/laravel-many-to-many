@@ -91,6 +91,8 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
+        // Carica anche le tecnologie associate al progetto
+        $project->load('technologies');
         return view('admin.projects.show', compact('project'));
     }
 

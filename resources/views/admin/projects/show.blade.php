@@ -21,6 +21,17 @@
                 {{ $project->type ? $project->type->name : 'No type assigned' }}
             </p>
 
+            <h3>Tecnologie utilizzate:</h3>
+            @if ($project->technologies->isNotEmpty())
+                <ul>
+                    @foreach ($project->technologies as $technology)
+                        <li>{{ $technology->name }}</li>
+                    @endforeach
+                </ul>
+            @else
+                <p>Questo progetto non utilizza nessuna tecnologia.</p>
+            @endif
+
             <!-- Pulsante per tornare alla lista dei progetti -->
             <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary">Back to Projects</a>
 
