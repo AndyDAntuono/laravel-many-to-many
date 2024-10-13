@@ -43,3 +43,6 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
 - lancio il comando php artisan make:seeder TechnologySeeder per creare l'omonimo seeder.
 - modifico TechnologySeeder sencondo le mie necessità.
 - eseguio il seeder tramite il comando php artisan db:seed --class=TechnologySeeder.
+
+/*ESECUZIONE BONUS 2*/
+- lancio il comando php artisan make:controller Admin/TechnologyController --resource per creare un controller che si occupi dei metodi CRUD relativi al modello Technologies.
