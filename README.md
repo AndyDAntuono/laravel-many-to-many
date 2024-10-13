@@ -37,7 +37,9 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
 - sempre nel ProjectController aggiungo le tecnologie nelle pagine di creazione e modifica di un progetto tipo.
 - modifico le view di create.blade.php e ed edith.blade.php per aggiungere la possibilità di selezionare la tecnologia durante la creazione di un nuovo progetto o la modifica di uno esistente.
 - per rafforzare quanto fatto nel punto precedente implementp la logica di salvataggio e validazione nel ProjectController.php.
-- avendo riscontrato degli errori in fase di creazione di un nuovo progetto e di modifica di uno già esistete, miglioro tutto il codice di ProjectController.
+- avendo riscontrato degli errori in fase di creazione di un nuovo progetto e di modifica di uno già esistete a causa dell'unicità dello slug, miglioro tutto il codice di ProjectController.
 
 /*ESECUZIONE BONUS 1*/
 - lancio il comando php artisan make:seeder TechnologySeeder per creare l'omonimo seeder.
+- modifico TechnologySeeder sencondo le mie necessità.
+- eseguio il seeder tramite il comando php artisan db:seed --class=TechnologySeeder.
