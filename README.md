@@ -46,3 +46,4 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
 
 /*ESECUZIONE BONUS 2*/
 - lancio il comando php artisan make:controller Admin/TechnologyController --resource per creare un controller che si occupi dei metodi CRUD relativi al modello Technologies.
+- modifico TechnologyController secondo le mi necessità.
