@@ -52,3 +52,4 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
 - creo la cartella technologies per le view del TechnologyController.
     - creo il file index.blade.php;
     - creo il file create.blade.php;
+    - creo il file edit.blade.php
