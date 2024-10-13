@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function() {
     Route::resource('projects', ProjectController::class);
     Route::resource('types', TypeController::class);
+    Route::resource('technologies', TechnologyController::class);
 });
 
 // test di controllo della relazione tra il modello Technology e Project

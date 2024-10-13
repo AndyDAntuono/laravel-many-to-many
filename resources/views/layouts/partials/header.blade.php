@@ -19,6 +19,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.types.index') }}">Gestione Tipologie</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.technologies.index') }}">Gestione Tecnologie</a>
+                    </li>
+                    
                 @endif
             </ul>
             <ul class="navbar-nav ml-auto">

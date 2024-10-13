@@ -59,12 +59,12 @@
             <select name="technologies[]" id="technologies" class="form-control" multiple>
                 @foreach($technologies as $technology)
                     <option value="{{ $technology->id }}"
-                        {{ in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray() ?? [])) ? 'selected' : '' }}>
+                        {{ in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) ? 'selected' : '' }}>
                         {{ $technology->name }}
                     </option>
                 @endforeach
             </select>
-        </div>        
+        </div>
 
         <button type="submit" class="btn btn-primary">Salva modifiche</button>
     </form>

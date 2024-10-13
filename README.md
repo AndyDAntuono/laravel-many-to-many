@@ -48,3 +48,6 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
 - lancio il comando php artisan make:controller Admin/TechnologyController --resource per creare un controller che si occupi dei metodi CRUD relativi al modello Technologies.
 - modifico TechnologyController secondo le mi necessità.
 - Prima di passare alle view di TechniologyController.php devo modificare ProjectController.php, create.blade.php, edit.blade.php e create.blade.php riguadanti le view del modello Projects.
+- nel punto precedente mi ero dimenticato di aggiunggere al web.php la rotta per il TechnologyController.php.
+- creo la cartella technologies per le view del TechnologyController.
+    - creo il file index.blade.php
