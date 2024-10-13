@@ -26,13 +26,16 @@
                 @endforeach
             </select>
         </div>
-        <select name="technologies[]" id="technologies" class="form-control" multiple>
-            @foreach ($technologies as $technology)
-                <option value="{{ $technology->id }}">
-                    {{ $technology->name }}
-                </option>
-            @endforeach
-        </select>        
-        <button type="submit" class="btn btn-success">Salva progetto</button>
+        <div class="form-group">
+            <label for="technologies">Technologies</label>
+            <select name="technologies[]" id="technologies" class="form-control" multiple>
+                @foreach($technologies as $technology)
+                    <option value="{{ $technology->id }}"
+                        {{ in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray() ?? [])) ? 'selected' : '' }}>
+                        {{ $technology->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
     </form>
 @endsection
