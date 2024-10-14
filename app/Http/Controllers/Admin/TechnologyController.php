@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Technology;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+
 
 class TechnologyController extends Controller
 {
@@ -21,16 +23,26 @@ class TechnologyController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
+        // Log dei dati della richiesta
+        \Log::info('Request data:', $request->all());
+        \Log::info('Validated Data: ', $validated);
+
+
         // Validazione dei dati
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:technologies,name',
         ]);
 
         // Creazione della tecnologia
-        Technology::create($validated);
+        Technology::create([
+            'name' => $validated['name'],
+            'slug' => Str::slug($validated['name']) // Genera uno slug basato sul nome
+        ]);
 
         return redirect()->route('admin.technologies.index')->with('success', 'Tecnologia creata con successo!');
     }
+
 
     public function show(Technology $technology)
     {
@@ -39,7 +51,9 @@ class TechnologyController extends Controller
 
     public function edit(Technology $technology)
     {
-        return view('admin.technologies.edit', compact('technology'));
+       // Recupera tutte le tecnologie disponibili
+        $allTechnologies = Technology::all();
+        return view('admin.technologies.edit', compact('technology', 'allTechnologies'));
     }
 
     public function update(Request $request, Technology $technology)

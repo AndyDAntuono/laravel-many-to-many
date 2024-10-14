@@ -53,3 +53,9 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
     - creo il file index.blade.php;
     - creo il file create.blade.php;
     - creo il file edit.blade.php
+- Purtroppo mi sono imbattuto in un errore che non riesco a risolvere da solo. Usando il tinker mi esce il seguente errore: 
+    App\Models\Technology::create(['name' => 'test tecnologia', 'slug' => 'test tecnologia']);
+
+   Illuminate\Database\QueryException  SQLSTATE[HY000]: General error: 1364 Field 'name' doesn't have a default value (SQL: insert into `technologies` (`updated_at`, `created_at`) values (2024-10-13 23:36:17, 2024-10-13 23:36:17)).
+
+   Oltretutto non riesco a vedere l'elenco ne delle tecnologie ne quelle delle tipologie, anche li ho scritte negli appositi seeder.
