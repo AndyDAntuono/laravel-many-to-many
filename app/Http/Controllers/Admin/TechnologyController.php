@@ -25,8 +25,6 @@ class TechnologyController extends Controller
     {
         //dd($request->all());
         // Log dei dati della richiesta
-        \Log::info('Request data:', $request->all());
-        \Log::info('Validated Data: ', $validated);
 
 
         // Validazione dei dati

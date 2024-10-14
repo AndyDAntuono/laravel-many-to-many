@@ -21,7 +21,7 @@
                         <td>{{ $type->slug }}</td>
                         <td>
                             <a href="{{ route('admin.types.edit', $type->id) }}" class="btn btn-warning">Modifica</a>
-                            <form action="{{ route('types.destroy', $type->id) }}" method="POST" style="display:inline-block;">
+                            <form action="{{ route('admin.types.destroy', $type->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Elimina</button>

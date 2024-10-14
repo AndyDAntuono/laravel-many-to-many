@@ -56,14 +56,22 @@
         </div>
         <div class="form-group">
             <label for="technologies">Technologies</label>
-            <select name="technologies[]" id="technologies" class="form-control" multiple>
+            <div>
                 @foreach($technologies as $technology)
-                    <option value="{{ $technology->id }}"
-                        {{ in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) ? 'selected' : '' }}>
-                        {{ $technology->name }}
-                    </option>
+                    <div class="form-check">
+                        <input 
+                            class="form-check-input" 
+                            type="checkbox" 
+                            name="technologies[]" 
+                            id="technology{{ $technology->id }}" 
+                            value="{{ $technology->id }}"
+                        >
+                        <label class="form-check-label" for="technology{{ $technology->id }}">
+                            {{ $technology->name }}
+                        </label>
+                    </div>
                 @endforeach
-            </select>
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Salva modifiche</button>

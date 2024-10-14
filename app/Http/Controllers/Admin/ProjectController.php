@@ -39,12 +39,6 @@ class ProjectController extends Controller
         $types = Type::all(); // recupera tutte le tipologie
         $technologies = Technology::all(); // recupera tutte le tecnologie
 
-        if (Project::where('slug', $slug)->exists()) {
-            // Gestisci il caso in cui lo slug esiste già
-            return redirect()->back()->withErrors(['title' => 'Il titolo è già stato utilizzato per un altro progetto.']);
-        }
-        
-
         return view('admin.projects.create', compact('types', 'technologies'));
     }
 
