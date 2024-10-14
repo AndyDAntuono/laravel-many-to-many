@@ -61,3 +61,4 @@ NB: come ho aperto il collegamento da VSC al browser per avere l'output visivo, 
    Oltretutto non riesco a vedere l'elenco ne delle tecnologie ne quelle delle tipologie, anche li ho scritte negli appositi seeder.
 - Sono riuscito a risolvere la maggior parte degli errori, sopratutto per merito del tutor Alessio Crea che mi ha guidato nella risoluzione.
 - decido di aggiornare l'index.blade.php di technology inserendo una modale per la cancellazione di una tecnologia.
+- decido di ripetere il passaggio precedente ma con l'index delle tipologie.
